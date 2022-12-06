@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-add-course',
@@ -6,43 +7,43 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent {
-  courseTitle=""
-  courseDescription=""
-  courseDuration=""
-  courseDate=""
-  courseVenue=""
+  title=""
+  discription=""
+  duration=""
+  date=""
+  venue=""
 
-  // constructor(private api:ApiService){}
+  constructor(private api:ApiService){}
 
   readValues=()=>
   {
-    let data:any={"courseTitle":this.courseTitle,"courseDescription":this.courseDescription,"courseDuration":this.courseDuration,"courseDate":this.courseDate,"courseVenue":this.courseVenue}
+    let data:any={"title":this.title,"discription":this.discription,"duration":this.duration,"date":this.date,"venue":this.venue}
     console.log(data)
-    // this.api.addCourse(data).subscribe(
-    //   (response:any)=>
-    //   {
-    //     console.log(response)
-    //     if (response.status == "success") {
+    this.api.addCourse(data).subscribe(
+      (response:any)=>
+      {
+        console.log(response)
+        if (response.status == "success") {
 
-    //       alert("Course added successfully")
+          alert("Successfully added")
   
-    //       this.courseTitle=""
+          this.title=""
   
-    //       this.courseDescription=""
+          this.discription=""
   
-    //       this.courseDuration=""
+          this.duration=""
   
-    //       this.courseDate=""
+          this.date=""
   
-    //       this.courseVenue=""
+          this.venue=""
   
-    //     } else {
+        } else {
   
-    //       alert("Something went wrong")
+          alert("Something went wrong")
   
-    //     }
-    //   }
-    // )
+        }
+      }
+    )
   }
 
 }
